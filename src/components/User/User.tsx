@@ -64,7 +64,7 @@ const useStyles = makeStyles({
     }
 })
 
-interface UserProps {
+export interface UserProps {
     name: string
     description: string
     avatar: string

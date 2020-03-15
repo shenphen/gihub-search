@@ -8,10 +8,7 @@ const mock = {
             name: 'asteroids',
             url: 'https://github.com/shenphen/asteroids',
             description: 'Famous "Asteroids" game written in Elm',
-            stars: {
-                count: 0,
-                url: 'https://api.github.com/repos/shenphen/asteroids/stargazers'
-            },
+            stars: 0,
             updatedAt: '2020-02-21T16:52:34Z',
             language: 'Elm'
         },
@@ -20,10 +17,7 @@ const mock = {
             name: 'github-search',
             url: 'https://github.com/shenphen/gihub-search',
             description: 'React application to search over users and view their basic info',
-            stars: {
-                count: 0,
-                url: 'https://api.github.com/repos/shenphen/gihub-search/stargazers'
-            },
+            stars: 0,
             updatedAt: '2020-03-11T21:08:31Z',
             language: 'TypeScript'
         },
@@ -33,10 +27,7 @@ const mock = {
             url: 'https://github.com/shenphen/rpi-board',
             description:
                 'Automatic control of heater, cooler & humidifier (diodes red, blue & green respectively) with posting data to the server and remote controlling by the user via socket.io',
-            stars: {
-                count: 0,
-                url: 'https://api.github.com/repos/shenphen/rpi-board/stargazers'
-            },
+            stars: 0,
             updatedAt: '2017-11-19T08:45:49Z',
             language: 'JavaScript'
         }
