@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserCodec, UserReposCodec } from './codecs'
+import { UserCodec, UserReposCodec, UserSuggestionsCodec } from './codecs'
 import { decode } from 'io-ts-promise'
 
 const githubApi = axios.create({
@@ -24,5 +24,16 @@ export default {
         const repositories = UserReposCodec.map(repositoriesDecoded)
 
         return { ...user, repositories }
+    },
+    getUsernameSuggestions: async (name: string) => {
+        if (!name) {
+            return []
+        }
+
+        const usersResource = await githubApi.get(`https://api.github.com/search/users?q=${name}`)
+        const usersDecoded = await decode(UserSuggestionsCodec.decoder, usersResource.data.items)
+        const users = UserSuggestionsCodec.map(usersDecoded)
+
+        return users
     }
 }
