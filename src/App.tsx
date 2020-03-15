@@ -1,27 +1,15 @@
 import React from 'react'
-import logo from './logo.svg'
+import Container from '@material-ui/core/Container'
 import './App.css'
 import User from 'components/User'
+import mock from 'components/User/__mocks__/user.mock'
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-            <User />
-        </div>
+        <Container maxWidth="md" className="App">
+            <header className="App-header">Search bar</header>
+            <User {...mock} />
+        </Container>
     )
 }
 
