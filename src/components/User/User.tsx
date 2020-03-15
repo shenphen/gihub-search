@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import Skeleton from '@material-ui/lab/Skeleton'
 import languageColor from 'utils/languageColor'
 
 const useStyles = makeStyles({
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
     repositoriesHeader: {
         fontSize: 18,
         fontWeight: 600,
-        margin: '12px 0'
+        marginBottom: 12
     },
     noRepositories: {
         textAlign: 'left'
@@ -75,11 +76,7 @@ interface Repository {
     name: string
     url: string
     description: string
-    updatedAt: string
-    stars: {
-        count: number
-        url: string
-    }
+    stars: number
     language: string
 }
 
@@ -127,7 +124,9 @@ const User = ({ name, description, avatar, repositories }: UserProps) => {
         return (
             <li key={id} className={classes.repository}>
                 <h3>
-                    <a href={url}>{name}</a>
+                    <a href={url} rel="noopener noreferrer" target="_blank">
+                        {name}
+                    </a>
                 </h3>
                 <div>{description}</div>
                 <div className={classes.repositoryExtras}>
@@ -140,7 +139,7 @@ const User = ({ name, description, avatar, repositories }: UserProps) => {
                         />
                         &nbsp;{language}
                     </span>
-                    <a href={stars.url}>
+                    <a href={`${url}/stargazers`} rel="noopener noreferrer" target="_blank">
                         <svg
                             aria-label="star"
                             className={classes.star}
@@ -155,12 +154,52 @@ const User = ({ name, description, avatar, repositories }: UserProps) => {
                                 d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"
                             ></path>
                         </svg>
-                        &nbsp;{stars.count}
+                        &nbsp;{stars}
                     </a>
                 </div>
             </li>
         )
     }
+}
+
+export const UserSkeleton = () => {
+    const classes = useStyles()
+
+    return (
+        <Grid container spacing={3}>
+            <Grid item xs={12} md={4}>
+                <Grid item xs={4} md={12}>
+                    <Skeleton variant="rect" height={288} />
+                </Grid>
+                <Grid item xs={8} md={12}>
+                    <Skeleton component="div" height={56} />
+                </Grid>
+                <Grid item xs={12}>
+                    <Skeleton component="div" height={60} />
+                </Grid>
+            </Grid>
+            <Grid item xs={12} md={8}>
+                <h2 className={classes.repositoriesHeader}>Repositories</h2>
+                <ul className={classes.repositoriesList}>
+                    {[...Array(3)].map((_, index) => {
+                        return (
+                            <li key={index} className={classes.repository}>
+                                <h3>
+                                    <Skeleton height={20} />
+                                </h3>
+                                <div>
+                                    <Skeleton height={16} />
+                                </div>
+                                <div className={classes.repositoryExtras}>
+                                    <Skeleton height={16} />
+                                </div>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </Grid>
+        </Grid>
+    )
 }
 
 export default User
