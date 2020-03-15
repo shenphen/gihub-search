@@ -130,15 +130,17 @@ const User = ({ name, description, avatar, repositories }: UserProps) => {
                 </h3>
                 <div>{description}</div>
                 <div className={classes.repositoryExtras}>
-                    <span>
-                        <span
-                            className={classes.circle}
-                            style={{
-                                backgroundColor: languageColor(language)
-                            }}
-                        />
-                        &nbsp;{language}
-                    </span>
+                    {language && (
+                        <span>
+                            <span
+                                className={classes.circle}
+                                style={{
+                                    backgroundColor: languageColor(language)
+                                }}
+                            />
+                            &nbsp;{language}
+                        </span>
+                    )}
                     <a href={`${url}/stargazers`} rel="noopener noreferrer" target="_blank">
                         <svg
                             aria-label="star"

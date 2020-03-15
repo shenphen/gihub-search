@@ -24,7 +24,7 @@ const UserContainer = (props: { name: string }) => {
         <Suspense
             fetchStatus={fetchStatus}
             LoadingComponent={<UserSkeleton />}
-            fallback={<div>Error during fetching</div>}
+            fallback={<div className="User-not-found">User not found</div>}
         >
             <User {...data} />
         </Suspense>

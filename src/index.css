@@ -69,3 +69,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.User-not-found {
+  text-align: center;
+  font-size: 36px;
+  margin-top: 12px;
+}
