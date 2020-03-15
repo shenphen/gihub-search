@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import * as t from 'io-ts'
 import { mapOutput } from 'io-ts-types/lib/mapOutput'
+import { withFallback } from 'io-ts-types/lib/withFallback'
 
 const UserResourceCodec = t.type({
     id: t.number,
-    name: t.string,
-    bio: t.string,
+    name: withFallback(t.string, ''),
+    bio: withFallback(t.string, ''),
     avatar_url: t.string,
     public_repos: t.number
 })
