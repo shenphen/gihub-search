@@ -3,7 +3,7 @@ import * as t from 'io-ts'
 import { mapOutput } from 'io-ts-types/lib/mapOutput'
 import { withFallback } from 'io-ts-types/lib/withFallback'
 
-const UserResourceCodec = t.type({
+const UserCodec = t.type({
     id: t.number,
     name: withFallback(t.string, ''),
     bio: withFallback(t.string, ''),
@@ -11,9 +11,9 @@ const UserResourceCodec = t.type({
     public_repos: t.number
 })
 
-type UserResource = t.TypeOf<typeof UserResourceCodec>
+type UserResource = t.TypeOf<typeof UserCodec>
 
-function userResourceMapper({ id, name, bio, avatar_url, public_repos }: UserResource) {
+function userMapper({ id, name, bio, avatar_url, public_repos }: UserResource) {
     return {
         id,
         name,
@@ -23,6 +23,7 @@ function userResourceMapper({ id, name, bio, avatar_url, public_repos }: UserRes
     }
 }
 
-const UserCodec = mapOutput(UserResourceCodec, userResourceMapper)
-
-export default UserCodec
+export default {
+    decoder: UserCodec,
+    map: mapOutput(UserCodec, userMapper).encode
+}
