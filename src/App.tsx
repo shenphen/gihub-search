@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '@material-ui/core/Container'
-import './App.css'
+import Search from 'components/Search'
 import User from 'components/User'
-import mock from 'components/User/__mocks__/user.mock'
 
 function App() {
+    const [userName, setUserName] = useState<string>('')
+
     return (
         <Container maxWidth="md" className="App">
-            <header className="App-header">Search bar</header>
-            <User {...mock} />
+            <header className="App-header">
+                <Search onChange={setUserName} />
+            </header>
+            {userName && <User name={userName} />}
         </Container>
     )
 }

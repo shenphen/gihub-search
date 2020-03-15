@@ -70,6 +70,10 @@ code {
     monospace;
 }
 
+.App-header {
+  margin: 12px 0;
+}
+
 .User-not-found {
   text-align: center;
   font-size: 36px;
